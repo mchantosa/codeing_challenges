@@ -1,9 +1,3 @@
-// 1. Create state variable
-// 2. Return state variable
-// 3. Instantiate and invoke helper method
-// 4. Base case
-// 5. Recursive case
-
 class Node {
   constructor(value) {
     this.value = value;
@@ -13,76 +7,107 @@ class Node {
 }
 
 class Tree {
-  constructor() {}
+  constructor() {
+    this.root = null;
+  }
 
   insert(value) {
     const newNode = new Node(value);
-    if (!this.root) {
+    if (this.root === null) {
       this.root = newNode;
-      return;
     } else {
-      const queue = [this.root];
-      while (queue.length) {
-        const current = queue.shift();
-        if (!current.left) {
-          current.left = newNode;
-          return;
-        } else {
-          queue.push(current.left);
-        }
-        if (!current.right) {
-          current.right = newNode;
-          return;
-        } else {
-          queue.push(current.right);
-        }
+      this.insertNode(this.root, newNode);
+    }
+  }
+
+  insertNode(node, newNode) {
+    if (newNode.value < node.value) {
+      if (node.left === null) {
+        node.left = newNode;
+      } else {
+        this.insertNode(node.left, newNode);
+      }
+    } else {
+      if (node.right === null) {
+        node.right = newNode;
+      } else {
+        this.insertNode(node.right, newNode);
       }
     }
   }
-  search() {}
-  delete() {}
 }
 
 ////////////// BFS ////////////////
-/**
- *
- * Use a queue: first in first out
- *  Note:(a stack would be last in last out)
- *  Another note: if you use an array as a "queue"
- *    during an interview, be sure to acknowledge this
- *    because of the linearity of shift.
- */
+//Breadth First Search
+//queue- note arr.shift is O(N), not the same as a queue O(1)
 
-Tree.prototype.traverseBFS = function () {
-  const queue = [];
-  let result = [];
+Tree.prototype.traverseBFS = function (action) {
+  const queue = [this.root];
 
   if (this.root === null) return result;
-  queue.push(this.root);
 
   while (queue.length > 0) {
     let current = queue.shift();
 
-    result.push(current.value);
+    action(current);
 
     if (current.left !== null) queue.push(current.left);
     if (current.right !== null) queue.push(current.right);
   }
-
-  return result;
 };
 
 ////////////// DFS ////////////////
+//Depth First Search
 
 //Pre order
-Tree.prototype.traverseDFSPre = function (node, action) {
-  if (node === null) return;
-  action(node, action);
-  this.traverseDFSPre(node.left, action);
-  this.traverseDFSPre(node.right, action);
+Tree.prototype.traverseDFSPre = function (action) {
+  const traverse = (node, action) => {
+    //base cases
+    if (node === null) return;
+
+    //action
+    action(node);
+    //recursive cases
+    if (node.left) traverse(node.left, action);
+    if (node.right) traverse(node.right, action);
+  };
+
+  traverse(this.root, action);
 };
 
-//[4,2,5,1,3,7,6,8]
+//In order
+Tree.prototype.traverseDFSIn = function (action) {
+  const traverse = (node, action) => {
+    //base cases
+    if (node === null) return;
+
+    //recursive case left
+    if (node.left) traverse(node.left, action);
+    //action
+    action(node);
+    //recursive case right
+    if (node.right) traverse(node.right, action);
+  };
+
+  traverse(this.root, action);
+};
+
+//In order
+Tree.prototype.traverseDFSPost = function (action) {
+  const traverse = (node, action) => {
+    //base cases
+    if (node === null) return;
+
+    //recursive case
+    if (node.left) traverse(node.left, action);
+    if (node.right) traverse(node.right, action);
+    //action
+    action(node);
+  };
+
+  traverse(this.root, action);
+};
+
 ////////////// TEST ////////////////
 
 const myTree = new Tree();
@@ -95,14 +120,30 @@ myTree.insert(7);
 myTree.insert(6);
 myTree.insert(8);
 
-console.log(myTree.root.value);
-console.log(
-  myTree.traverseDFSPre(myTree.root, (node) => {
-    console.log(node.value);
-  })
-);
-console.log(
-  myTree.traverseBFS((node) => {
-    console.log(node.value);
-  })
-);
+console.log(`myTree.root.value: ${myTree.root.value}`);
+
+const bfsArr = [];
+myTree.traverseBFS((node) => {
+  bfsArr.push(node.value);
+});
+console.log(`bfsArr: ${bfsArr}`);
+
+const preArr = [];
+myTree.traverseDFSPre((node) => {
+  preArr.push(node.value);
+});
+console.log(`preArr: ${preArr}`);
+
+const inArr = [];
+myTree.traverseDFSIn((node) => {
+  inArr.push(node.value);
+});
+console.log(`inArr: ${inArr}`);
+
+const postArr = [];
+myTree.traverseDFSPost((node) => {
+  postArr.push(node.value);
+});
+console.log(`postArr: ${postArr}`);
+
+module.exports = { Node, Tree };

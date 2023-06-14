@@ -1,4 +1,6 @@
-/** 
+const { Node, Tree } = require("./binary_search_tree");
+
+/** Problem
  * Given a binary tree root node, check if the tree is a valid binary search tree
  *
  * Input: node in a binary tree
@@ -19,9 +21,8 @@
         1      3            7         
                         6       8
  *  - output2: true
- * 
- *
- * Whiteboarding
+ */
+/** Whiteboarding
  * -------------------------------------------------
  * Understand
  *  - what happens if the tree is empty? true
@@ -61,51 +62,11 @@
  *        R = traverse(node.right, node.val, hi)
  *        return L + R
  *    return traverse( root, int, -int)
- *  
+ *
  *  - Time complexity: O(n)
  *  - Space complexity: O(log(n))
  *
- * Code
  */
-
-class Node {
-  constructor(value) {
-    this.value = value;
-    this.left = null;
-    this.right = null;
-  }
-}
-
-class Tree {
-  constructor() {
-    this.root = null;
-  }
-
-  insert(value) {
-    const newNode = new Node(value);
-    if (this.root === null) {
-      this.root = newNode;
-    } else {
-      this.insertNode(this.root, newNode);
-    }
-  }
-
-  insertNode(node, newNode) {
-    if (newNode.value < node.value) {
-      if (node.left === null) {
-        node.left = newNode;
-      } else {
-        this.insertNode(node.left, newNode);
-      }
-    } else {
-      if (node.right === null) {
-        node.right = newNode;
-      } else {
-        this.insertNode(node.right, newNode);
-      }
-    }
-  }
-}
 
 function isBinaryTree(root) {
   const traverse = (node, lo, hi) => {

@@ -1,13 +1,26 @@
 /**
- * Invert a Binary Tree 
+ * Invert a Binary Tree
+ * 
  * Given a binary tree root node, invert the binary tree mirror and return back the root node
- * 
- * input: node ina binary tree
+ *
+ * input: node in a binary tree
  * output: node in a binary tree
- * 
+ *
  * example:
- * 
- * 
+ * Input: 
+ *             1
+            /     \
+          2         3
+                  /   \
+                4       5 
+ * Output:
+ *             1
+             /    \
+           3        2
+          / \
+        5     4     
+ *
+ *
  * Whileboarding
  * -----------------------------
  * Understand
@@ -16,34 +29,34 @@
  * Diagram
  *  - breadth first
  *  - use a queue: when using an array, call out the shift difference
- * 
+ *
  *      1[2, 3]
- *        [left, right] = [right, left] 
+ *        [left, right] = [right, left]
  *      2[3]
  *        [null,null] = [null, null]
  *      3[4, 5]
  *        [left, right] = [right, left]
- * 
+ *
  * Pseudocode
+ *
+ *  q = [root]
+ *  while q.length
+ *    node = shift q
+ *    q push node left, node right
+ *    
+ *    swap
+ *      temp = node left
+ *      node left = node right
+ *      node right = temp
+ *  
+ *  return root
  * 
  *  - Time complexity: O(N)
  *  - Space complexity: O(log(N)), this is a breadth problem so it's O(N) if tree is balanced, depth would be O(log(N)) except for the imbalanced edge case
  * Code
  */
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+function invertBinaryTree(root) {}
 
 /**
  * /*
@@ -126,33 +139,33 @@ Code
 // DO NOT EDIT
 // Node class for a binary tree node
 class TreeNode {
-	constructor(value) {
-		this.value = value;
-		this.left = null;
-		this.right = null;
-	}
+  constructor(value) {
+    this.value = value;
+    this.left = null;
+    this.right = null;
+  }
 }
 
 // DO NOT EDIT
 // generate tree from array
 function deserialize(arr) {
-	if (arr.length === 0) {
-		return null;
-	}
-	let root = new TreeNode(arr[0]);
-	let queue = [root];
-	for (let i = 1; i < arr.length; i += 2) {
-		let current = queue.shift();
-		if (arr[i] !== null) {
-			current.left = new TreeNode(arr[i]);
-			queue.push(current.left);
-		}
-		if (arr[i + 1] !== null && arr[i + 1] !== undefined) {
-			current.right = new TreeNode(arr[i + 1]);
-			queue.push(current.right);
-		}
-	}
-	return root;
+  if (arr.length === 0) {
+    return null;
+  }
+  let root = new TreeNode(arr[0]);
+  let queue = [root];
+  for (let i = 1; i < arr.length; i += 2) {
+    let current = queue.shift();
+    if (arr[i] !== null) {
+      current.left = new TreeNode(arr[i]);
+      queue.push(current.left);
+    }
+    if (arr[i + 1] !== null && arr[i + 1] !== undefined) {
+      current.right = new TreeNode(arr[i + 1]);
+      queue.push(current.right);
+    }
+  }
+  return root;
 }
 
 // DO NOT EDIT
@@ -175,28 +188,26 @@ const invertBF = (root) => {
     if (val.right != null) {
       q.push(val.right);
     }
-
   }
 
   return root;
 };
 
 const invertDF = (root) => {
-	if (root === null) {
-		return;
-	}
-	const temp = root.left;
-	root.left = root.right;
-	root.right = temp;
+  if (root === null) {
+    return;
+  }
+  const temp = root.left;
+  root.left = root.right;
+  root.right = temp;
 
-	invertDF(root.left);
-	invertDF(root.right);
+  invertDF(root.left);
+  invertDF(root.right);
 
-	return root;
+  return root;
 };
-console.log(sampleTree, 'DFS: Initial tree');
-console.log(invertDF(sampleTree), 'Inverted Tree');
+console.log(sampleTree, "DFS: Initial tree");
+console.log(invertDF(sampleTree), "Inverted Tree");
 
-console.log(sampleTree, 'BFS: Initial tree');
-console.log(invertBF(sampleTree), 'Inverted Tree');
- */
+console.log(sampleTree, "BFS: Initial tree");
+console.log(invertBF(sampleTree), "Inverted Tree");
