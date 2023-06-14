@@ -1,4 +1,7 @@
-/**
+//const { Node, Tree } = require("./binary_search_tree");
+//Used provided test framework (below)
+
+/** Problem
  * Invert a Binary Tree
  * 
  * Given a binary tree root node, invert the binary tree mirror and return back the root node
@@ -20,12 +23,13 @@
           / \
         5     4     
  *
- *
- * Whileboarding
+ */
+/** Whiteboarding
  * -----------------------------
  * Understand
  *  - how many nodes? 0? max?
  *  - integers: yes
+ *
  * Diagram
  *  - breadth first
  *  - use a queue: when using an array, call out the shift difference
@@ -38,105 +42,46 @@
  *        [left, right] = [right, left]
  *
  * Pseudocode
- *
  *  q = [root]
  *  while q.length
  *    node = shift q
  *    q push node left, node right
- *    
+ *
  *    swap
  *      temp = node left
  *      node left = node right
  *      node right = temp
- *  
+ *
  *  return root
- * 
+ *
  *  - Time complexity: O(N)
  *  - Space complexity: O(log(N)), this is a breadth problem so it's O(N) if tree is balanced, depth would be O(log(N)) except for the imbalanced edge case
- * Code
+ *
  */
 
-function invertBinaryTree(root) {}
+function invertBF(root) {
+  let q = [root];
 
-/**
- * /*
-Invert a Binary Tree
-Given a binary tree root node, invert the binary tree (mirror) and return back the root node.
-
-Input: Node in a Binary Tree
-Output: Node in a Binary Tree
-Example
-Input: InvertBinaryTree1
-
-Output: InvertbinaryTree2
-
-
-              1
-          /       \
-        2           3
-                /       \
-               4         5
-
-            1
-        /         \
-       3           2
-    /     \
-   5       4
-
-Whiteboarding
----
-Understand
-- How many nodes? 0? Max?
-  0 => None, Max - Fit in memory
-- integers?
-  Yes
-
-
-Diagram
-[]
-
-              1
-          /       \
-        3           2
-    /       \
-   5         4            
-
-2^32 => 4Gig
-
-              1
-          1        1
-    1        1
-    ...
-
- 1 11 1 1 1 1 1 1 1 1 1 1 1 1 1   
-
-
- 2 billion
-
-Pseudocode
-function invert(...) {
-  q = [...];
-
+  if (root === null) return;
   while (q.length) {
-    val = q.pop()
-    # preorder
-    q.push(...)
-    # inorder
-    q.push(...)
-    # postorder
-  }
+    current = q.shift();
 
-  return
+    if (current) {
+      //action
+      const temp = current.left;
+      current.left = current.right;
+      current.right = temp;
+
+      //queue
+      q.push(current.left);
+      q.push(current.right);
+    }
+  }
+  return root;
 }
 
-Time complexity: O(n)
-Space: O(n)
+/////////////////// Testing ////////////////
 
-Code
-
-*/
-
-// DO NOT EDIT
 // Node class for a binary tree node
 class TreeNode {
   constructor(value) {
@@ -146,8 +91,7 @@ class TreeNode {
   }
 }
 
-// DO NOT EDIT
-// generate tree from array
+// Generates tree from array
 function deserialize(arr) {
   if (arr.length === 0) {
     return null;
@@ -168,46 +112,10 @@ function deserialize(arr) {
   return root;
 }
 
-// DO NOT EDIT
+// Create a tree
 const arr = [1, 2, 3, null, null, 4, 5];
-
 const sampleTree = deserialize(arr);
 
-const invertBF = (root) => {
-  q = [root];
-
-  while (q.length) {
-    let val = q.shift();
-    const temp = val.left;
-    val.left = val.right;
-    val.right = temp;
-
-    if (val.left != null) {
-      q.push(val.left);
-    }
-    if (val.right != null) {
-      q.push(val.right);
-    }
-  }
-
-  return root;
-};
-
-const invertDF = (root) => {
-  if (root === null) {
-    return;
-  }
-  const temp = root.left;
-  root.left = root.right;
-  root.right = temp;
-
-  invertDF(root.left);
-  invertDF(root.right);
-
-  return root;
-};
-console.log(sampleTree, "DFS: Initial tree");
-console.log(invertDF(sampleTree), "Inverted Tree");
-
+//Compare the output
 console.log(sampleTree, "BFS: Initial tree");
 console.log(invertBF(sampleTree), "Inverted Tree");
