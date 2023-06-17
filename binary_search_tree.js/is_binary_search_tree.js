@@ -1,4 +1,4 @@
-const { Node, Tree } = require("./binary_search_tree");
+const { Node, Tree } = require("./binary_tree");
 
 /** Problem
  * Given a binary tree root node, check if the tree is a valid binary search tree
