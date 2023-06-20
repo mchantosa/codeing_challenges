@@ -36,8 +36,8 @@
  *  - Requirement specifies "pure recursion,"  can't use helper functions
  *  - Start with (2,2) and work backwards
  *  - Time and Space complexity:
- *    - Time: O()
- *    - Space: O()
+ *    - Time: O(2^(m+n))
+ *    - Space: O(m+n)
  * Pseudocode
  *  - Base cases
  *    - If row < 0 or column < 0, return 0
@@ -55,5 +55,36 @@ function latticePaths(row, col) {
   return latticePaths(row - 1, col) + latticePaths(row, col - 1);
 }
 
-console.log(latticePaths(2, 2));
-console.log(latticePaths(2, 3));
+/**
+ * Pseudocode
+ *  - Base cases
+ *    - If row < 0 or column < 0, return 0
+ *    - If row = 0 and column = 0, return 1
+ *  - Recursive cases
+ *    - store travel left + travel up
+ *      - if there is no row, add a row
+ *      - if there is no column, add the [row][col]
+ *    - return store
+ *
+ *  - Time and Space complexity:
+ *    - Time: O(m*n)
+ *    - Space: O(m*n)
+ *
+ */
+function latticePathsMemoize(row, col, tracker = []) {
+  if (row < 0 || col < 0) return 0;
+  if (row === 0 && col === 0) return 1;
+
+  if (!tracker[row]) {
+    tracker[row] = [];
+  }
+  if (!tracker[row][col]) {
+    tracker[row][col] =
+      latticePathsMemoize(row - 1, col, tracker) +
+      latticePathsMemoize(row, col - 1, tracker);
+  }
+  return tracker[row][col];
+}
+
+console.log(latticePathsMemoize(2, 2));
+console.log(latticePathsMemoize(2, 3));
