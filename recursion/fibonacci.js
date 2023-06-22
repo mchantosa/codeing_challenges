@@ -19,6 +19,10 @@ function fibonacciBUMemoize(n) {
   return fibs[n];
 }
 
+function fibonacciPure(n) {
+  return n < 2 ? n : fibonacciPure(n - 1) + fibonacciPure(n - 2);
+}
+
 function fibonacciTD(n) {
   //1, 1, 2, 3, 5, 8, 13, 21
   //base case
@@ -44,9 +48,9 @@ function fibonacciTDMemoize(n, tracking = []) {
   return tracking[n];
 }
 
-console.log(fibonacciTD(1) === 1);
-console.log(fibonacciTD(2) === 1);
-console.log(fibonacciTD(3) === 2);
-console.log(fibonacciTD(8) === 21);
-console.log(fibonacciBUMemoize(60));
-console.log(fibonacciTDMemoize(60));
+console.log(fibonacciPure(1) === 1);
+console.log(fibonacciPure(2) === 1);
+console.log(fibonacciPure(3) === 2);
+console.log(fibonacciPure(8) === 21);
+// console.log(fibonacciBUMemoize(60));
+// console.log(fibonacciTDMemoize(60));
