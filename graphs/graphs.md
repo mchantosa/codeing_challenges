@@ -1,4 +1,9 @@
+# Graph Traversal
 
+## Logic
+## Complexity
+## Template
+## WHen to use
 
 What is a graph? A graph is a collection of vertices and edges
 What is a vertex? Set of nodes/labels

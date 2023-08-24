@@ -13,8 +13,10 @@ A graph traversal algorithm used to explore all the vertices (nodes) of a graph 
 
 ## Complexity
 
-* **Time complexity:**
+* **Time complexity:** O(V + E)
 * **Space complexity:**
+
+BFS has a time complexity of O(V + E), where V is the number of vertices (nodes) and E is the number of edges in the graph. Additionally, BFS requires the use of a queue data structure to keep track of the nodes to be explored, which makes it a memory-intensive algorithm for large graphs. However, for smaller graphs and when finding shortest paths, it can be a very effective and easy-to-implement algorithm.
 
 ## Template
 ```javascript
@@ -50,8 +52,12 @@ dfs(graph, startNode, visited);
 
 ## When to use:
 
-* Topological Sorting: DFS can be used to perform topological sorting on a directed acyclic graph (DAG), which is useful for scheduling tasks or dependencies.
-* Connected Components: DFS can be used to find all the connected components in an undirected graph.
-* Solving Mazes and Puzzles: DFS is useful in solving mazes and puzzles by exploring all possible paths and backtracking when a dead end is reached.
-* Path Finding: DFS can be used to find a path between two nodes in a graph.
-* Detecting Cycles: DFS can help in detecting cycles in a graph. If, during traversal, we encounter an edge leading to an already visited node (excluding the parent), it indicates the presence of a cycle.
+* **Shortest Path Finding:** BFS can be used to find the shortest path between two nodes in an unweighted graph. Since BFS explores nodes layer by layer, the first time the destination node is reached, it guarantees the shortest path.
+
+* **Connected Components:** BFS can be used to find all the connected components in an undirected graph.
+
+* **Web Crawling:** BFS is used by search engines to crawl and index web pages on the internet. The process involves starting from a specific web page and exploring its linked pages level by level.
+
+* **Social Network Analysis:** BFS can be used to find the degrees of separation between individuals in a social network, for example, finding the shortest path between two people in a friend network.
+
+* **Puzzle Solving:** BFS can be applied to solve puzzles like mazes, sliding puzzles, and other path-finding games.

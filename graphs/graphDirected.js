@@ -1,4 +1,4 @@
-module.exports = class Graph {
+class GraphDirected {
   constructor() {
     this.vertices = new Map();
   }
@@ -9,26 +9,22 @@ module.exports = class Graph {
 
   addEdge(startVertex, endVertex) {
     this.vertices.get(startVertex).push(endVertex);
-    // For undirected graphs, you would also add:
-    // this.vertices.get(endVertex).push(startVertex);
   }
 
-  dfsR(startVertex) {
+  dfsRecursive(startVertex, callback) {
     const visited = new Set();
-    this.dfsHelper(startVertex, visited);
+    this.dfsHelper(startVertex, visited, callback);
   }
 
-  dfsHelper(vertex, visited) {
+  dfsHelper(vertex, visited, callback) {
     visited.add(vertex);
 
-    // Process the current vertex here
-    console.log(vertex);
-    // ...
+    callback(vertex);
 
     const neighbors = this.vertices.get(vertex);
     for (const neighbor of neighbors) {
       if (!visited.has(neighbor)) {
-        this.dfsHelper(neighbor, visited);
+        this.dfsHelper(neighbor, visited, callback);
       }
     }
   }
@@ -106,7 +102,14 @@ module.exports = class Graph {
   }
 };
 
-const graph = new Graph();
+
+
+const graph = new GraphDirected();
+
+/**
+ *
+ * 
+ */
 graph.addVertex("A");
 graph.addVertex("B");
 graph.addVertex("C");
@@ -116,8 +119,10 @@ graph.addEdge("A", "C");
 graph.addEdge("B", "C");
 graph.addEdge("B", "D");
 
-graph.dfsR("A");
-graph.dfsI("A");
-graph.bfsI("A");
+console.log(graph)
 
-[].for;
+graph.dfsRecursive("A", (vertex) => console.log(vertex));
+// graph.dfsI("A");
+// graph.bfsI("A");
+
+
