@@ -39,19 +39,114 @@
   *            coin array will be unique
   *            Order does not matter. Ex: One penny and one nickel to create six
   *            cents is equivalent to one nickel and one penny
+  * 
+  *    Reference: https://www.youtube.com/watch?v=jaNZ83Q3QGc
   */
 
-// *** Memoization ***
-function coinChange(coinArr, targetVal){
-  //YOUR WORK HERE
+/** Solution:
+ *  
+ *                                                   4[1, 2, 3]
+ *                                 /                                          \
+ *                               1[1,2,3]                                    4[1,2]
+ *                         /             \                            /                    \
+ *                      -1[1,2,3]        1[1,2]                  2[1,2]                    4[1]
+ *                                      /       \              /       \                 /      \
+ *                                   -1[1,2]   1[1]        0[1,2]       2[1]            3[1]     4[]
+ *                                             /  \                    /  \            /  \ 
+ *                                           0[1] 1[]                1[1] 2[]         2[1]  3[] 
+ *                                                                  /  \              /  \
+ *                                                                0[1] 1[]          1[1]  2[]
+ *                                                                                  /  \
+ *                                                                                0[1] 1[]
+ * 
+ * 
+ * Recursion: F(total, coins) = F(total - coins[n], coins) + F(total, coins.pop())
+ *                        F(4, [1,2,3]) = F(3, [1,2,3]) + F(4, [1,2])
+ * Tabulation: 
+ *  F(<0, [1, 2, 3]) = 0
+ *  F(0, [1, 2, 3]) = 1  //1 way to make 0
+ *  F(1, [1, 2, 3]) = 1  //1 way to make 1
+ *  F(2, [1, 2, 3]) = 
+ *  F(3, [1, 2, 3]) = 
+ *  F(3, [1, 2, 3]) = 
+ *  F(n, coins) = 
+ *
+ * Base case:
+ *     if total === 0, return 1
+ *     if total < 0, return 0
+ *     if coins.length === 0, return 0
+ * 
+ * 
+ * Complexity:
+ *      Time: O(2^n)
+ *      Space: O(n)
+ */
+
+function coinSumMemo(coinArr, targetVal){
+    
+    let dp = {};
+
+    const helper = (coinArr, targetVal) => {
+        // base cases
+        if (targetVal === 0) return 1;
+        if (targetVal < 0) return 0;
+        if (coinArr.length === 0) return 0;
+
+        // check if we've already computed this value
+        let key = `${coinArr.length}-${targetVal}`;
+        if (dp[key]) return dp[key];
+
+        // recursive case
+        let result = helper(coinArr, targetVal - coinArr[coinArr.length - 1]) + helper(coinArr.slice(0, coinArr.length - 1), targetVal);
+        dp[key] = result;
+        return result;
+    }
+
+    
+    return helper(coinArr, targetVal);
+}
+
+function coinSumTab(coinArr, targetVal){
+
+    let dp = new Array(targetVal + 1).fill(0);
+    dp[0] = 1;  //0 coins for 0
+
+    for (let i = 0; i < coinArr.length; i++){   //iterate through coins
+        for (let j = coinArr[i]; j <= targetVal; j++){  //iterate through dp
+            //add the number of ways to make j - coinArr[i] to the number of ways to make j
+            /**
+             * i=1  [1,0,0,0,0]
+             * coin1 = 1
+             *  start   [1,0,0,0,0]
+             *  j=1     [1,(0+1),0,0,0]
+             *  j=2     [1,1,(0+1),0,0]
+             *  j=3     [1,1,1,(0+1),0]
+             *  j=4     [1,1,1,1,(0+1)]
+             * coin2 = 2
+             *  start   [1,1,1,1,1]
+             *  j=2     [1,1,(1+1),1,1]
+             *  j=3     [1,1,2,(1+1),1]
+             *  j=4     [1,1,2,2,(1+2)]
+             * coin3 = 3
+             *  start   [1,1,2,2,3]
+             *  j=3     [1,1,2,(2+1),3]
+             *  j=4     [1,1,2,3,(3+1)]
+             * 
+            */
+
+            dp[j] += dp[j - coinArr[i]];    
+        }
+    }
+    
+    return dp[targetVal];
+    
 }
 
 
 // *** Tabulation ***
-// Time Complexity:
-// Auxiliary Space Complexity:
+// Time Complexity:  O(n)
 function coinSum(coins, total) {
-  //YOUR WORK HERE
+    return coinSumTab(coins, total);
 }
 
 

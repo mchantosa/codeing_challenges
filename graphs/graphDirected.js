@@ -37,6 +37,7 @@ class GraphDirected {
   }
 
   dfsFindPaths(vertex, endVertex, visited, currentPath, paths) {
+    //Track visited vertices
     visited.add(vertex);
 
     if (vertex === endVertex) {
@@ -51,11 +52,11 @@ class GraphDirected {
         }
       }
     }
-
+    //Backtrack
     visited.delete(vertex);
   }
 
-  bfsI(startVertex) {
+  bfsIterative(startVertex) {
     const visited = new Set();
     const queue = [];
     visited.add(startVertex);
@@ -78,7 +79,7 @@ class GraphDirected {
     }
   }
 
-  dfsI(startVertex) {
+  dfsIterative(startVertex) {
     const visited = new Set();
     const stack = [];
     visited.add(startVertex);
@@ -107,22 +108,40 @@ class GraphDirected {
 const graph = new GraphDirected();
 
 /**
- *
+ *                  A ---> D
+ *                /   \
+ *              B  --> C
+ *             /  \     \
+ *            E    F --> G
  * 
  */
 graph.addVertex("A");
 graph.addVertex("B");
 graph.addVertex("C");
 graph.addVertex("D");
+graph.addVertex("E");
+graph.addVertex("F");
+graph.addVertex("G");
 graph.addEdge("A", "B");
 graph.addEdge("A", "C");
+graph.addEdge("A", "D");
 graph.addEdge("B", "C");
-graph.addEdge("B", "D");
+graph.addEdge("B", "E");
+graph.addEdge("B", "F");
+graph.addEdge("C", "G");
+graph.addEdge("F", "G");
 
 console.log(graph)
 
-graph.dfsRecursive("A", (vertex) => console.log(vertex));
-// graph.dfsI("A");
-// graph.bfsI("A");
+console.log("DFS Recursive");
+const aggregate = [];
+graph.dfsRecursive("A", (vertex) => aggregate.push(vertex));
+console.log(aggregate);
+
+graph.dfsIterative("DFS Iterative");
+graph.dfsIterative("A");
+
+console.log("BFS Iterative");
+graph.bfsIterative("A");
 
 
