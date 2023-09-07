@@ -16,12 +16,12 @@
  * 
  * Examples
  * 
- *  Example 1:
+ *      Example 1:
  *      Input: s = "ABAB", k = 2
  *      Output: 4
  *      Explanation: Replace the two 'A's with two 'B's or vice versa.
  *  
- *  Example 2:
+ *      Example 2:
  *      Input: s = "AABABBA", k = 1
  *      Output: 4
  *      Explanation: Replace the one 'A' in the middle with 'B' and form "AABBBBA".
@@ -35,14 +35,46 @@
  *      Auxiliary Space Complexity: O(k)
  *      s consists of English letters
  * 
+ * Diagram
+ * 
+ *      k=1
+ *      freq={}
+ *      max_freq_count: 0
+ * 
+ *      "AABABBA"
+ *         l
+ *           r
+ * 
  * Psuedocode
-*       sliding_window(input sequence)
-*           initialize state related to window
-*           initialize left to 0
-* 
-*           for r in range 0 to length of input
-*               update window state for expansion
-*               while monotonic condition is not met
-*                   update window state for contraction
-*                   increment left
+ *      OPTION 1:
+ *      sliding_window(input sequence)
+ *          initialize state related to window
+ *          initialize left to 0
+ * 
+ *          for r in range 0 to length of input
+ *
+ *              update window state for expansion
+ *
+ *              while monotonic condition is not met
+ *                  update window state for contraction
+ *                  increment left
+ *
+ *              if current window has greater length than max_length, update max_length
+ * 
+ *      OPTION 2:
+ *      sliding_window(input sequence)
+ *          initialize state related to window
+ *          initialize left to 0
+ * 
+ *          for r in range 0 to length of input
+ * 
+ *          update window state for expansion
+ *              Update freq count of char at position r in input 
+ *              If the updated freq count exceeds max_freq_count, update max_f_c
+ *     
+ *          if monotonic condition is not met
+ *              update window state for contraction
+ *              increment left
+ *       
+ *          if current window has greater length than max_length, update max_length
 */
