@@ -1,4 +1,6 @@
-What are some indicators I should use Sliding Window?
+# Sliding Window
+
+## What are some indicators I should use Sliding Window?
 
 - Contiguous subsequence of a linear data structure (array, string, linked list)
 - Minimize/maximize a quantity related to the window (comparisons)
@@ -6,14 +8,14 @@ What are some indicators I should use Sliding Window?
   -- The quadratic solution has "overlapping work"
 - Generally a "monotonic" condition
 
-How do I solve a sliding window problem?
+## How do I solve a sliding window problem?
 
 - Decide what the window state and monotonic condition are
 - Instantiate the template
 - Add the answer capture/return code
 
 
-Write a template for the sliding window technique:
+## Write a template for the sliding window technique:
 
 sliding_window(input sequence)
   initialize state related to window
@@ -28,8 +30,7 @@ sliding_window(input sequence)
 
 NOTE: typically going to need additional code to capture/return the answer
 
-What is the runtime & space complexity of a sliding window algorithm?
-
+## What is the runtime & space complexity of a sliding window algorithm?
 Time: O(N)
 Space: varies, but generally O(1)
 
