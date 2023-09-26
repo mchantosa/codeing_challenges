@@ -61,7 +61,7 @@ const { Node, Tree } = require("./binary_tree_class.js");
  *      recursive cases
  *        L = traverse(node.left, lo, node.val)
  *        R = traverse(node.right, node.val, hi)
- *        return L + R
+ *        return L && R
  *    return traverse( root, int, -int)
  *
  *  - Time complexity: O(n)
