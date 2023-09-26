@@ -109,41 +109,45 @@ Tree.prototype.traverseDFSPost = function (action) {
 };
 
 ////////////// TEST ////////////////
+function test(){
+  const myTree = new Tree();
+  myTree.insert(4);
+  myTree.insert(2);
+  myTree.insert(5);
+  myTree.insert(1);
+  myTree.insert(3);
+  myTree.insert(7);
+  myTree.insert(6);
+  myTree.insert(8);
 
-const myTree = new Tree();
-myTree.insert(4);
-myTree.insert(2);
-myTree.insert(5);
-myTree.insert(1);
-myTree.insert(3);
-myTree.insert(7);
-myTree.insert(6);
-myTree.insert(8);
+  console.log(`myTree.root.value: ${myTree.root.value}`);
 
-console.log(`myTree.root.value: ${myTree.root.value}`);
+  const bfsArr = [];
+  myTree.traverseBFS((node) => {
+    bfsArr.push(node.value);
+  });
+  console.log(`bfsArr: ${bfsArr}`);
 
-const bfsArr = [];
-myTree.traverseBFS((node) => {
-  bfsArr.push(node.value);
-});
-console.log(`bfsArr: ${bfsArr}`);
+  const preArr = [];
+  myTree.traverseDFSPre((node) => {
+    preArr.push(node.value);
+  });
+  console.log(`preArr: ${preArr}`);
 
-const preArr = [];
-myTree.traverseDFSPre((node) => {
-  preArr.push(node.value);
-});
-console.log(`preArr: ${preArr}`);
+  const inArr = [];
+  myTree.traverseDFSIn((node) => {
+    inArr.push(node.value);
+  });
+  console.log(`inArr: ${inArr}`);
 
-const inArr = [];
-myTree.traverseDFSIn((node) => {
-  inArr.push(node.value);
-});
-console.log(`inArr: ${inArr}`);
+  const postArr = [];
+  myTree.traverseDFSPost((node) => {
+    postArr.push(node.value);
+  });
+  console.log(`postArr: ${postArr}`);
+}
 
-const postArr = [];
-myTree.traverseDFSPost((node) => {
-  postArr.push(node.value);
-});
-console.log(`postArr: ${postArr}`);
+//test();
+
 
 module.exports = { Node, Tree };
