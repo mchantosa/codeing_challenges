@@ -1,6 +1,3 @@
-//const { Node, Tree } = require("./binary_search_tree");
-//Used provided test framework (below)
-
 /** Problem
  * Invert a Binary Tree
  * 
@@ -24,6 +21,7 @@
         5     4     
  *
  */
+
 /** Whiteboarding
  * -----------------------------
  * Understand
@@ -31,7 +29,7 @@
  *  - integers: yes
  *
  * Diagram
- *  - breadth first
+ *  - breadth first traversal
  *  - use a queue: when using an array, call out the shift difference
  *
  *      1[2, 3]
@@ -117,5 +115,8 @@ const arr = [1, 2, 3, null, null, 4, 5];
 const sampleTree = deserialize(arr);
 
 //Compare the output
-console.log(sampleTree, "BFS: Initial tree");
-console.log(invertBF(sampleTree), "Inverted Tree");
+console.log("BFS: Initial tree");
+console.log(sampleTree);
+console.log('----------------------------------')
+console.log("Inverted Tree");
+console.log(invertBF(sampleTree));

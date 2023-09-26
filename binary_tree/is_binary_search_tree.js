@@ -1,4 +1,4 @@
-const { Node, Tree } = require("./binary_tree");
+const { Node, Tree } = require("./binary_tree_class.js");
 
 /** Problem
  * Given a binary tree root node, check if the tree is a valid binary search tree
@@ -22,6 +22,7 @@ const { Node, Tree } = require("./binary_tree");
                         6       8
  *  - output2: true
  */
+
 /** Whiteboarding
  * -------------------------------------------------
  * Understand
@@ -100,5 +101,5 @@ badTree.insert(9);
 badTree.root.right.left = new Node(4);
 console.log(badTree);
 
-console.log(isBinaryTree(goodTree.root));
-console.log(isBinaryTree(badTree.root));
+console.log(isBinaryTree(goodTree.root)===true);
+console.log(isBinaryTree(badTree.root)===false);
