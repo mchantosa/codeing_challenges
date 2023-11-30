@@ -33,3 +33,53 @@ To insert a new element into a binary tree, you must first find the appropriate 
 *  Preorder Traversal (DFS): In this method, you visit the current node before its children. The algorithm is: current node, left subtree, right subtree.
 *  Postorder Traversal (DFS): Here, you visit the current node after its children. The algorithm is: left subtree, right subtree, current node.
 *  Level-order Traversal (Breadth-First Traversal or BFS): In this traversal, you visit nodes level by level, starting from the root and moving left to right at each level.
+
+
+## What are some indicators I should use a Tree?
+
+Use a tree when you:
+* Have hierarchy 
+* Have parent-child relationships
+* You need to maintain data in a specific order
+* You need fast search and retrieval
+
+## How do I solve a Tree problem
+
+1. Understand the Problem
+1. Choose an Appropriate Tree Representation
+1. Define the Tree Structure
+1. Traverse the Tree
+1. Apply Problem-Specific Algorithms or Techniques
+
+## Write a template for a recursive DFS tree traversal
+```
+Tree.prototype.traverseDFSPre = function (node, action) {
+if (node === null) return;
+action(node, action);
+this.traverseDFSPre(node.left, action);
+this.traverseDFSPre(node.right, action);
+}
+```
+
+## Write a template for an iterative BFS or DFS tree traversal
+```
+Tree.prototype.traverseBFS = function () {
+  const queue = [];
+  
+  if (this.root === null) return result;
+  queue.push(this.root);
+
+  while (queue.length > 0) {
+    let current = queue.shift();
+
+    //action 
+
+    if (current.left !== null) queue.push(current.left);
+    if (current.right !== null) queue.push(current.right);
+  }
+ };
+```
+
+## What is the runtime & space complexity of a Tree Traversal?
+Time complexity: O(N)
+Space Complexity: Worst case scenario O(N), typical scenario O(Log(N))

@@ -1,4 +1,4 @@
-# Bredth-First Search (DFS) 
+# Bredth-First Search (BFS) 
 
 A graph traversal algorithm used to explore all the vertices (nodes) of a graph systematically and efficiently. The algorithm starts at a specified source node and explores its neighbors at the present level before moving on to the next level of neighbors. In other words, BFS explores all the nodes at the current level before moving on to nodes at the next level.
 
@@ -61,3 +61,48 @@ dfs(graph, startNode, visited);
 * **Social Network Analysis:** BFS can be used to find the degrees of separation between individuals in a social network, for example, finding the shortest path between two people in a friend network.
 
 * **Puzzle Solving:** BFS can be applied to solve puzzles like mazes, sliding puzzles, and other path-finding games.
+
+
+*      Input: root, 4, 9 => 
+ *                 5
+ *              /     \
+ *             2       7
+ *                   /    \
+ *                  4      8
+ *                           \
+ *                             9
+ *      Output: 7
+ * 
+
+*      visited         queue
+ *      []              [5]
+ *      [5]             [2,7]
+ *      [5,2]           [7]
+ *      [5,2,7]         [4,8]
+ *      [5,2,7,4]       [8]
+ *      [5,2,7,4,8]     [9]
+ * 
+ * 
+ *                             8
+ *                        /         \
+ *                    3                  12
+ *                  /    \               /     \
+ *                 0      5             10          18
+ *               /   \   /  \          / \       /      \
+ *             -4     2 4    6        8   11    15      21
+ *             / \   /         \        \       /\       /\
+ *           -5  -3 1           7         9   13  16   19  22
+ *                                       
+ *                                     
+ * 
+ *      visited                 queue
+ *      []                      [8]
+ *      [8]                     [3,12]
+ *      [8,3]                   [12.0,5]
+ *      [8,3,12]                [0, 5, 10, 18]
+ *      [8,3,12,0]              [5,10,18,-4,2]
+ *      [8,3,12,0,5]            [10,18,-4,2,4,6]
+ *      [8,3,12,0,5,10]         [18,-4,2,4,6,8,11]
+ *      [8,3,12,0,5,10,18]      [-4,2,4,6,8,11,15,21]
+ *      [8,3,12,0,5,10,18,-4]   [2,4,6,8,11,15,21,-5,-3]
+ *      ...
