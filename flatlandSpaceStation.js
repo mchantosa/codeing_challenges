@@ -45,23 +45,35 @@ c=[1, 3, 8, 9]
                   0      1    2      2      1   0     1
                                                       0
 
-PSUEDOCODE
-let max = 0
-sort c
-itterate over c
-  index x = 0:
-    For index i from 0 to c[x] ->
-      if distance[i],  distance[i] = min(abs(c[i]-i), distance[i])
-      else distance[i] = abs(c[i]-i)
-  index x:
-    For index i from c[x-1] to c[x+1] -> 
-      if distance[i],  distance[i] = min(abs(c[i]-i), distance[i])
-      else distance[i] = abs(c[i]-i)
-  index x = end:
-    For index from c[end-1] to n-1 -> 
-      if distance[i],  distance[i] = min(abs(c[i]-i), distance[i])
-      else distance[i] = abs(c[i]-i)
-return minimal element in distance
+PSEUDOCODE O(nlogn) + O(n)
+  let max = 0
+  sort c
+  iterate over c
+    index x = 0:
+      For index i from 0 to c[x] ->
+        if distance[i],  distance[i] = min(abs(c[i]-i), distance[i])
+        else distance[i] = abs(c[i]-i)
+    index x:
+      For index i from c[x-1] to c[x+1] -> 
+        if distance[i],  distance[i] = min(abs(c[i]-i), distance[i])
+        else distance[i] = abs(c[i]-i)
+    index x = end:
+      For index from c[end-1] to n-1 -> 
+        if distance[i],  distance[i] = min(abs(c[i]-i), distance[i])
+        else distance[i] = abs(c[i]-i)
+  return minimal element in distance
+
+OPTIMIZED PSEUDOCODE O(n)
+  let max = 0
+  sort c
+  measure 1/2 distance between nodes rounded up, update max
+    Math.ceil((c[i+1]-c[i] -1)/2)
+    if distance is greater than max, update max
+  account for non 0 station
+    if c[0] !== 0, if c[0]-0 > max, replace max 
+  account for non end station
+    if c[end] !== length-1, if length-1-c[end] > max, replace max 
+  return max
 
 */
 
@@ -83,19 +95,6 @@ function flatLandSpaceStations(n,c){
 }
 
 function flatLandSpaceStationsOptimized(n,c){
-  /** 
-  let max = 0
-  sort c
-  measure 1/2 distance between nodes rounded up, update max
-    Math.ceil((c[i+1]-c[i] -1)/2)
-    if distance is greater than max, update max
-  account for non 0 station
-    if c[0] !== 0, if c[0]-0 > max, replace max 
-  account for non end station
-    if c[end] !== length-1, if length-1-c[end] > max, replace max 
-  return max
-  */
-  
   let max = 0;
   c.sort((a,b)=>a-b)
   for(let i = 1; i <= c.length-1; i++){
