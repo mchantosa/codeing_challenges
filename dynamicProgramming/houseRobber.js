@@ -1,5 +1,7 @@
 /**
- *  link: https://leetcode.com/problems/house-robber/
+ *  PROBLEM: House Rubber
+ *  
+ *  LINK: https://leetcode.com/problems/house-robber/
  * 
  *  DESCRIPTION:
  *     You are a professional robber planning to rob houses along a street. Each house has a certain 
@@ -43,7 +45,6 @@
                     f(2) = max(f(1), f(0) + V(2))
                     ...
                     f(n) = max(f(n-1), f(n-2) + V(n))
-
 
                 Base cases
                     f(0) = V(0)
@@ -96,7 +97,6 @@ function robTab(nums) {
 };
 
 //TOP DOWN: Memoization
-
 function robMem(nums) {
     /**
      * PSEUDOCODE
@@ -117,7 +117,7 @@ function robMem(nums) {
     
     const memo = [];
     const helper = (n) => {
-        if(0 || memo[n]) return memo[n]
+        if(memo[n] === 0 || memo[n]) return memo[n]
         else if (n == 0) {
             memo[0] = nums[0]
             return memo[0]
