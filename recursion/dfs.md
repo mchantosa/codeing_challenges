@@ -13,8 +13,8 @@ A graph traversal algorithm used to explore all the vertices (nodes) of a graph.
 
 ## Complexity
 
-* **Time complexity:**
-* **Space complexity:**
+* **Time complexity:**  O(V + E) where V is the number of vertices (nodes) and E is the number of edges
+* **Space complexity:** O(V) where V is the number of vertices. It is actually depth, V represents the worse cas scenario where the three is completely imbalanced. If the tree was balanced, the space complexity would be the depth of the tree. 
 
 ## Template
 ```javascript
