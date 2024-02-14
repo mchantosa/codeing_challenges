@@ -1,5 +1,5 @@
 /**
- *  PROBLEM: House Rubber
+ *  PROBLEM: House Robber
  *  
  *  LINK: https://leetcode.com/problems/house-robber/
  * 
