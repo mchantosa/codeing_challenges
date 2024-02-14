@@ -1,6 +1,40 @@
+/**
+    Suppose you have a sorted array and want to find an element in the array 
+    of length n. You could start at 0 and traverse the array to n-1, stopping 
+    when you find the element. This would be the simplest approach and have a 
+    complexity of O(n).
+
+    A more efficient approach would be to 
+
+    1. Define the ends, 
+    2. Check the middle
+    3. Make the middle a new end
+    4. Check the new middle
+    5. Make the middle a new end
+    6. … until you find the element for which you are looking.
+
+    Find 8 in the array below: 6
+    [0,  1,  3,  3,  3,  7,  8,  9,  9]
+     L                               R
+                     M   L           R
+                         L   R   M 
+                             M
+
+    Find 5 in the array below: -1
+    [0,  1,  3,  3,  3,  7,  8,  9,  9]
+     L                               R
+                     M   L           R
+                         L   R   M 
+                         LR  M
+                     R   LM
+ */
+
 const arr = [0,  1,  3,  3,  3,  7,  8,  9,  9]
 
 const binarySearchIterative = (arr, n) => {
+    //Time Complexity: O(log(n))
+    //Space Complexity: O(1)
+
     let left = 0;
     let right = arr.length-1;
     
@@ -16,6 +50,9 @@ const binarySearchIterative = (arr, n) => {
 }
 
 const binarySearchRecursive = (arr, n) => {
+    //Time Complexity: O(log(n))
+    //Space Complexity: O(log(n))
+
     const left = 0;
 	const right = arr.length-1;
   
