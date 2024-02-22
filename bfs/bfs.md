@@ -6,9 +6,9 @@ BFS is not recursive.
 
 ## Complexity
 * **Time: O(V + E)**
-  * BFS has a time complexity of O(V + E), where V is the number of vertices (nodes) and E is the number of edges in the graph. This reflects the work required to visit each vertex and to explore the adjacency list of each vertex, which cumulatively involves examining all edges in the graph.
+BFS has a time complexity of O(V + E), where V is the number of vertices (nodes) and E is the number of edges in the graph. This reflects the work required to visit each vertex and to explore the adjacency list of each vertex, which cumulatively involves examining all edges in the graph.
 * **Space Complexity: O(V)**
-  * BFS requires the use of a queue data structure to keep track of the nodes to be explored, which makes it a memory-intensive algorithm for large graphs. However, for smaller graphs and when finding shortest paths, it can be a very effective and easy-to-implement algorithm.
+BFS requires the use of a queue data structure to keep track of the nodes to be explored, which makes it a memory-intensive algorithm for large graphs. However, for smaller graphs and when finding shortest paths, it can be a very effective and easy-to-implement algorithm.
 
 ## Logic
 
@@ -89,9 +89,7 @@ function bfs(graph, root) {
 
 * **Connected Components:** BFS can be used to find all the connected components in an undirected graph.
 
-* **Web Crawling:** BFS is used by search engines to crawl and index web pages on the internet. The process involves starting from a specific web page and exploring its linked pages level by level.
-
-* **Social Network Analysis:** BFS can be used to find the degrees of separation between individuals in a social network, for example, finding the shortest path between two people in a friend network.
+* **Level Order Traversal:** In tree data structures, BFS can be used for level order traversal, where nodes are visited level by level from left to right. This is often used in scenarios where processing or inspecting nodes in a hierarchical manner is required.
 
 * **Puzzle Solving:** BFS can be applied to solve puzzles like mazes, sliding puzzles, and other path-finding games.
 
@@ -100,6 +98,6 @@ function bfs(graph, root) {
 
 1. [Same Tree](./same_tree.js)
 1. [Symmetric Tree](./symetric_tree.js)
-1. [Binary Tree Level Order Reversal]()
+1. [Binary Tree Level Order Reversal](./binary_tree_level_order_reversal.js)
 1. [Binary Tree Zigzag Level Order Reversal]()
 1. [Maximum Depth of a Binary Tree]()

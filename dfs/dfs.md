@@ -2,6 +2,17 @@
 
 A graph traversal algorithm used to explore all the vertices (nodes) of a graph. Unlike Breadth-First Search (BFS), which explores nodes level by level, DFS explores as far as possible along each branch before backtracking. It traverses as deep as possible along each branch before exploring other branches.
 
+DFS is recursive.
+
+## Complexity
+**Time: O(V + E)** 
+
+BFS has a time complexity of O(V + E), where V is the number of vertices (nodes) and E is the number of edges in the graph.
+
+**Space Complexity: O(V)**
+
+Space Complexity worst case scenario is V where all the nodes are stacked on top of each other. Space complexity in DFS is the depth of the matrix.
+
 ## Logic:
 
 1. Start at a specified source node and mark it as visited.
@@ -9,12 +20,7 @@ A graph traversal algorithm used to explore all the vertices (nodes) of a graph.
 1. If an unvisited neighbor is found, repeat step 2 recursively, starting from that neighbor.
 1. If no unvisited neighbors are left, backtrack to the previous node and explore any remaining unvisited neighbors from there.
 1. Continue this process until all nodes are visited.
-1. DFS can be implemented using either recursion or an explicit stack. Here's a simple recursive implementation of DFS:
-
-## Complexity
-
-* **Time complexity:**  O(V + E) where V is the number of vertices (nodes) and E is the number of edges
-* **Space complexity:** O(V) where V is the number of vertices. It is actually depth, V represents the worse cas scenario where the three is completely imbalanced. If the tree was balanced, the space complexity would be the depth of the tree. 
+1. DFS can be implemented using either recursion or an explicit stack. 
 
 ## Template
 ```javascript
@@ -30,22 +36,6 @@ function dfs(graph, node, visited) {
     }
   }
 }
-
-// Example usage:
-const graph = {
-  1: [2, 3],
-  2: [4, 5],
-  3: [6],
-  4: [],
-  5: [7],
-  6: [],
-  7: []
-};
-
-const startNode = 1;
-const visited = new Set();
-
-dfs(graph, startNode, visited);
 ```
 
 ## When to use:
