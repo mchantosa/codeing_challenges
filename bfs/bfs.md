@@ -5,9 +5,12 @@ A graph traversal algorithm used to explore all the vertices (nodes) of a graph 
 BFS is not recursive. 
 
 ## Complexity
-* **Time: O(V + E)**
+**Time: O(V + E)**
+
 BFS has a time complexity of O(V + E), where V is the number of vertices (nodes) and E is the number of edges in the graph. This reflects the work required to visit each vertex and to explore the adjacency list of each vertex, which cumulatively involves examining all edges in the graph.
-* **Space Complexity: O(V)**
+
+**Space Complexity: O(V)**
+
 BFS requires the use of a queue data structure to keep track of the nodes to be explored, which makes it a memory-intensive algorithm for large graphs. However, for smaller graphs and when finding shortest paths, it can be a very effective and easy-to-implement algorithm.
 
 ## Logic
@@ -92,7 +95,6 @@ function bfs(graph, root) {
 * **Level Order Traversal:** In tree data structures, BFS can be used for level order traversal, where nodes are visited level by level from left to right. This is often used in scenarios where processing or inspecting nodes in a hierarchical manner is required.
 
 * **Puzzle Solving:** BFS can be applied to solve puzzles like mazes, sliding puzzles, and other path-finding games.
-
 
 ## [Problem List](https://leetcode.com/tag/breadth-first-search/)
 

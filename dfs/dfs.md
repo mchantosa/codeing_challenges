@@ -40,8 +40,16 @@ function dfs(graph, node, visited) {
 
 ## When to use:
 
-* Topological Sorting: DFS can be used to perform topological sorting on a directed acyclic graph (DAG), which is useful for scheduling tasks or dependencies.
-* Connected Components: DFS can be used to find all the connected components in an undirected graph.
-* Solving Mazes and Puzzles: DFS is useful in solving mazes and puzzles by exploring all possible paths and backtracking when a dead end is reached.
-* Path Finding: DFS can be used to find a path between two nodes in a graph.
-* Detecting Cycles: DFS can help in detecting cycles in a graph. If, during traversal, we encounter an edge leading to an already visited node (excluding the parent), it indicates the presence of a cycle.
+* **Connected Components:** DFS can be used to find all the connected components in an undirected graph.
+
+* **Solving Mazes and Puzzles:** DFS is useful in solving mazes and puzzles by exploring all possible paths and backtracking when a dead end is reached.
+
+* **Path Finding:** DFS can be used to find a path between two nodes in a graph.
+
+* **Detecting Cycles:** DFS can help in detecting cycles in a graph. If, during traversal, we encounter an edge leading to an already visited node (excluding the parent), it indicates the presence of a cycle.
+
+## [Problem List](https://leetcode.com/tag/depth-first-search/)
+
+1. [Binary Tree Inorder Traversal](./binary_tree_inorder_traversal)
+1. [Validate Binary Search Tree](./validate_binary_search_tree)
+1. [Print HTML Hierarchy](./print_html_hierarchy.js)

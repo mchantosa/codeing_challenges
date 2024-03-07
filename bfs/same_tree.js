@@ -1,7 +1,7 @@
 //https://leetcode.com/problems/same-tree/description/
 
-const TreeNode = require('../treeNode').TreeNode;
-const Queue = require('../queue').Queue;
+const TreeNode = require('../utilities/treeNode').TreeNode;
+const Queue = require('../utilities/queue').Queue;
 
 /**
  * 
